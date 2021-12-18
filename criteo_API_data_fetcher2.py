@@ -7,11 +7,11 @@ x5 = "session.merge(cost_data) session.commit() input_file.close() os.remove(fil
 x6 = "def get_default_dates(): yesterday = datetime.today().date() - timedelta(days=1) res = session.execute(SELECT COALESCE(MAX(campaign_date), now()::DATE) AS max_date FROM criteo.criteo_campaign_costs).fetchone() max_fetched_date = res['max_date'] def_start = str((min(max_fetched_date, yesterday) - timedelta(days=2)).strftime('%Y-%m-%d')) def_end = str(yesterday.strftime('%Y-%m-%d')) return def_start, def_end"
 x7 = "if __name__ == '__main__': (default_start, default_end) = get_default_dates() parser = argparse.ArgumentParser(description='Fetch data about campaigns and their costs from the Criteo API and load it into the DWH.') parser.add_argument('-s', '--start', default=default_start, help='the start date on which the data should be fetched') parser.add_argument('-e', '--end', default=default_end, help='the end date on which the data should be fetched') parser.add_argument('-c', '--countries', default='all', help='choose for which country(ies) to fetch and load data, default is all') args = parser.parse_args() if datetime.strptime(args.end, '%Y-%m-%d') - datetime.strptime(args.start, '%Y-%m-%d') >= timedelta(days=90): logger.error('The time window for the daily aggregation of campaign results is limited to 90 days') load_data(countries=args.countries, from_date=args.start, to_date=args.end)"
 
-print("False")
-print("False")
+print(bool(x1))
 print(bool(x2))
-print("False")
+print(bool(x2))
+print(bool(x3))
 print(bool(x4))
-print("False")
+print(bool(x5))
 print(bool(x6))
 print(bool(x7))
